@@ -10,21 +10,30 @@ namespace MyTimer
         static int b = 1;
         static void Main(string[] args)
         {
-            int fibanachiMax = 20;
-            TimerCallback timerCallback = new TimerCallback(FibanachiTimer);
-            Timer timer = new Timer(timerCallback, fibanachiMax, 0,500);
-            while (currentNum < fibanachiMax)
+            Console.WriteLine("Enter max fibanachi number: ");
+            try
             {
-                Thread.Sleep(500);
+                int fibanachiMax = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("We are starting...");
+                TimerCallback timerCallback = new TimerCallback(FibanachiTimer);
+                Timer timer = new Timer(timerCallback, fibanachiMax, 0,500);
+                while (currentNum < fibanachiMax)
+                {
+                    Thread.Sleep(500);
+                }
+                timer.Dispose();
+                Console.WriteLine("We are done!");
+                }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
-            timer.Dispose();
-            Console.WriteLine("We are done!");
 
             Console.ReadLine();
         }
         static void FibanachiTimer(object state)
         {
-            Console.WriteLine(b);
+            Console.WriteLine(a);
             currentNum++;
             int tmp = b;
             b = a + b;
